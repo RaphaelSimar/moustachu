@@ -3,12 +3,13 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const postType = defineType({
   name: 'post',
-  title: 'Post',
+  title: 'Article',
   type: 'document',
   icon: DocumentTextIcon,
   fields: [
     defineField({
       name: 'title',
+      title: 'Titre',
       type: 'string',
     }),
     defineField({
@@ -20,11 +21,13 @@ export const postType = defineType({
     }),
     defineField({
       name: 'author',
+      title: 'Auteur',
       type: 'reference',
       to: { type: 'author' },
     }),
     defineField({
       name: 'mainImage',
+      title: 'Image principale',
       type: 'image',
       options: {
         hotspot: true,
@@ -33,11 +36,11 @@ export const postType = defineType({
         defineField({
           name: 'alt',
           type: 'string',
-          title: 'Alternative text',
+          title: 'Texte alternatif',
           validation: rule => rule.custom((value, context) => {
             const parent = context?.parent as { asset: { _ref?: string } };
             return !value && parent?.asset?._ref
-              ? "Alt text is required when an image is provided."
+              ? "Le texte alternatif est requis quand une image est fournie."
               : true;
           })
         })
@@ -45,15 +48,18 @@ export const postType = defineType({
     }),
     defineField({
       name: 'categories',
+      title: 'Catégories',
       type: 'array',
       of: [defineArrayMember({ type: 'reference', to: { type: 'category' } })],
     }),
     defineField({
       name: 'publishedAt',
+      title: 'Date de publication',
       type: 'datetime',
     }),
     defineField({
       name: 'body',
+      title: 'Contenu',
       type: 'blockContent',
     }),
   ],
@@ -65,7 +71,7 @@ export const postType = defineType({
     },
     prepare(selection) {
       const { author } = selection
-      return { ...selection, subtitle: author && `by ${author}` }
+      return { ...selection, subtitle: author && `par ${author}` }
     },
   },
 })
