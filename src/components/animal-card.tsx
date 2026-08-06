@@ -32,7 +32,11 @@ export function AnimalCard(props: AnimalCardProps) {
               {age && ` • ${age}`}
             </p>
 
-            {sterilized && <p className="text-sm">✓ Stérilisé</p>}
+            {sterilized && (
+              <p className="text-sm">
+                ✓ {sex === "Femelle" ? "Stérilisée" : "Stérilisé"}
+              </p>
+            )}
           </div>
         </div>
 
