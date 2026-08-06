@@ -47,3 +47,48 @@ export const POST_QUERY =
     image
   }
 }`)
+
+
+export const ANIMALS_QUERY =
+  defineQuery(`*[_type == "animal"]|order(name asc){
+  _id,
+  name,
+  species,
+  sex,
+  age,
+  sterilized,
+  coverImage,
+  slug
+}`)
+
+export const ANIMALS_SLUGS_QUERY =
+  defineQuery(`*[_type == "animal" && defined(slug.current)]{
+  "slug": slug.current
+}`)
+
+
+export const ANIMAL_QUERY =
+  defineQuery(`*[_type == "animal" && slug.current == $slug][0]{
+  _id,
+  name,
+  species,
+  breed,
+  sex,
+  age,
+  coverImage,
+  gallery,
+  videos,
+  animalMessage,
+  story,
+  personality,
+  health,
+  heavyCareNeeded,
+  sociability,
+  vaccinated,
+  sterilized,
+  currentFood,
+  currentHabitat,
+  associationTime,
+  adoptionFees,
+  quantity
+}`)
