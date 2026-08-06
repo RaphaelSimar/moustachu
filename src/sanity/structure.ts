@@ -5,11 +5,12 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Blog')
     .items([
+      S.documentTypeListItem('animal').title('Animaux'),
       S.documentTypeListItem('post').title('Articles'),
       S.documentTypeListItem('category').title('Catégories'),
       S.documentTypeListItem('author').title('Auteurs'),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !['post', 'category', 'author'].includes(item.getId()!),
+        (item) => item.getId() && !['post', 'category', 'author', 'animal'].includes(item.getId()!),
       ),
     ])

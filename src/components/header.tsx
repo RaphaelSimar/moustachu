@@ -24,6 +24,14 @@ export function Header() {
           <li>
             <Link
               className="hover:text-pink-500 transition-colors"
+              href="/animaux"
+            >
+              Animaux
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="hover:text-pink-500 transition-colors"
               href="/posts"
             >
               Posts

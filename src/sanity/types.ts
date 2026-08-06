@@ -15,18 +15,95 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: src/sanity/extract.json
-export type AuthorReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "author";
-};
-
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
+export type Animal = {
+  _id: string;
+  _type: "animal";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  coverImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  gallery?: Array<{
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  videos?: Array<{
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
+    _key: string;
+  }>;
+  species?: "Lapin" | "Souris" | "Gerbille" | "Hamster" | "Chat" | "Autre";
+  quantity?: number;
+  breed?: string;
+  sex?: "M\xE2le" | "Femelle";
+  age?: string;
+  animalMessage?: string;
+  story?: string;
+  personality?: string;
+  health?: string;
+  heavyCareNeeded?: boolean;
+  sociability?: number;
+  vaccinated?: boolean;
+  sterilized?: boolean;
+  currentFood?: string;
+  currentHabitat?: string;
+  associationTime?: string;
+  adoptionFees?: number;
+  slug: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export type AuthorReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
 };
 
 export type CategoryReference = {
@@ -92,22 +169,6 @@ export type BlockContent = Array<
     }
 >;
 
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-};
-
 export type Author = {
   _id: string;
   _type: "author";
@@ -141,12 +202,6 @@ export type Author = {
     _type: "block";
     _key: string;
   }>;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
 };
 
 export type Category = {
@@ -258,15 +313,17 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-  | AuthorReference
   | SanityImageAssetReference
+  | SanityFileAssetReference
+  | Animal
+  | Slug
+  | SanityImageCrop
+  | SanityImageHotspot
+  | AuthorReference
   | CategoryReference
   | Post
   | BlockContent
-  | SanityImageCrop
-  | SanityImageHotspot
   | Author
-  | Slug
   | Category
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -355,6 +412,81 @@ export type POST_QUERY_RESULT = {
   } | null;
 } | null;
 
+// Source: src/sanity/lib/queries.ts
+// Variable: ANIMALS_QUERY
+// Query: *[_type == "animal"]|order(name asc){  _id,  name,  species,  sex,  age,  sterilized,  coverImage,  slug}
+export type ANIMALS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string;
+  species:
+    "Autre" | "Chat" | "Gerbille" | "Hamster" | "Lapin" | "Souris" | null;
+  sex: "Femelle" | "M\xE2le" | null;
+  age: string | null;
+  sterilized: boolean | null;
+  coverImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  slug: Slug;
+}>;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: ANIMALS_SLUGS_QUERY
+// Query: *[_type == "animal" && defined(slug.current)]{  "slug": slug.current}
+export type ANIMALS_SLUGS_QUERY_RESULT = Array<{
+  slug: string;
+}>;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: ANIMAL_QUERY
+// Query: *[_type == "animal" && slug.current == $slug][0]{  _id,  name,  species,  breed,  sex,  age,  coverImage,  gallery,  videos,  animalMessage,  story,  personality,  health,  heavyCareNeeded,  sociability,  vaccinated,  sterilized,  currentFood,  currentHabitat,  associationTime,  adoptionFees,  quantity}
+export type ANIMAL_QUERY_RESULT = {
+  _id: string;
+  name: string;
+  species:
+    "Autre" | "Chat" | "Gerbille" | "Hamster" | "Lapin" | "Souris" | null;
+  breed: string | null;
+  sex: "Femelle" | "M\xE2le" | null;
+  age: string | null;
+  coverImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  gallery: Array<{
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }> | null;
+  videos: Array<{
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
+    _key: string;
+  }> | null;
+  animalMessage: string | null;
+  story: string | null;
+  personality: string | null;
+  health: string | null;
+  heavyCareNeeded: boolean | null;
+  sociability: number | null;
+  vaccinated: boolean | null;
+  sterilized: boolean | null;
+  currentFood: string | null;
+  currentHabitat: string | null;
+  associationTime: string | null;
+  adoptionFees: number | null;
+  quantity: number | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -362,5 +494,8 @@ declare module "@sanity/client" {
     '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': POSTS_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)]{ \n  "slug": slug.current\n}': POSTS_SLUGS_QUERY_RESULT;
     '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': POST_QUERY_RESULT;
+    '*[_type == "animal"]|order(name asc){\n  _id,\n  name,\n  species,\n  sex,\n  age,\n  sterilized,\n  coverImage,\n  slug\n}': ANIMALS_QUERY_RESULT;
+    '*[_type == "animal" && defined(slug.current)]{\n  "slug": slug.current\n}': ANIMALS_SLUGS_QUERY_RESULT;
+    '*[_type == "animal" && slug.current == $slug][0]{\n  _id,\n  name,\n  species,\n  breed,\n  sex,\n  age,\n  coverImage,\n  gallery,\n  videos,\n  animalMessage,\n  story,\n  personality,\n  health,\n  heavyCareNeeded,\n  sociability,\n  vaccinated,\n  sterilized,\n  currentFood,\n  currentHabitat,\n  associationTime,\n  adoptionFees,\n  quantity\n}': ANIMAL_QUERY_RESULT;
   }
 }

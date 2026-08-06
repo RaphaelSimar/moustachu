@@ -13,6 +13,12 @@ export default async function Page() {
           Posts
         </h2>
       </Link>
+      <Link href="/animaux" className="">
+        <h2 className="hover:text-pink-500 transition-colors flex items-center gap-2 text-xl md:text-xl lg:text-xl font-semibold text-slate-800 text-pretty max-w-3xl">
+          <Newspaper size={18} aria-hidden />
+          Animaux
+        </h2>
+      </Link>
     </section>
   );
 }
