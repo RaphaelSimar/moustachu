@@ -15,7 +15,7 @@ export function Header() {
             className="transition-transform duration-300 group-hover:rotate-10"
           />
           <span className="relative">
-            Moustachu
+            Moustachu bangz
             <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-pink-500 transition-all duration-300 group-hover:w-full" />
           </span>
         </Link>
