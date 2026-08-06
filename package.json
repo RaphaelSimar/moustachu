@@ -9,7 +9,7 @@
     "lint": "eslint",
     "predev": "npm run typegen",
     "prebuild": "npm run typegen",
-    "typegen": "sanity schema extract --enforce-required-fields --path=./src/sanity/extract.json && sanity typegen generate"
+    "typegen": "sanity schema extract --enforce-required-fields --force --path=./src/sanity/extract.json && sanity typegen generate"
   },
   "dependencies": {
     "@sanity/client": "^7.13.1",
@@ -32,7 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
-    "baseline-browser-mapping": "^2.9.14",
+    "baseline-browser-mapping": "^2.11.12",
     "eslint": "^9",
     "eslint-config-next": "16.0.5",
     "tailwindcss": "^4",

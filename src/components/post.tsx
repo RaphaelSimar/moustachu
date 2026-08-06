@@ -8,9 +8,9 @@ import { PublishedAt } from '@/components/published-at';
 import { Title } from '@/components/title';
 import { urlFor } from '@/sanity/lib/image';
 import { components } from '@/sanity/portableTextComponents';
-import { POST_QUERYResult } from '@/sanity/types';
+import { POST_QUERY_RESULT } from '@/sanity/types';
 
-export function Post(props: NonNullable<POST_QUERYResult>) {
+export function Post(props: NonNullable<POST_QUERY_RESULT>) {
   const { title, author, mainImage, body, publishedAt, categories } = props;
 
   return (
