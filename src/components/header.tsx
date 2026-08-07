@@ -1,51 +1,61 @@
-import { Rabbit } from "lucide-react";
+import { IconHeartHandshake } from "@tabler/icons-react";
+import Image from "next/image";
 import Link from "next/link";
+import logo from "../assets/logo/moustachu_logo.svg";
 
 export function Header() {
   return (
-    <div className="from-pink-50 to-white bg-gradient-to-b p-6">
-      <header className="bg-white/80 shadow-md flex items-center justify-between p-6 rounded-lg container mx-auto shadow-pink-50">
-        <Link
-          href="/"
-          className="group flex items-center gap-2 text-pink-700 md:text-xl font-bold tracking-tight"
-        >
-          <Rabbit
-            size={24}
-            aria-hidden
-            className="transition-transform duration-300 group-hover:rotate-10"
-          />
-          <span className="relative">
-            Moustachu
-            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-pink-500 transition-all duration-300 group-hover:w-full" />
-          </span>
-        </Link>
+    <div className="bg-white">
+      <header className="bg-primary-500 flex items-center justify-between items-end h-[100px] p-10 pb-4 pl-50 overflow-y">
+        <div className="flex items-center justify-between gap-4 w-full">
+          <Link href="/" className="absolute left-5 translate-y-1/7">
+            <Image
+              src={logo}
+              alt="Moustachu"
+              width={130}
+              priority
+              className="transition-all duration-300 hover:scale-105 hover:drop-shadow-lg"
+            />
+          </Link>
 
-        <ul className="flex items-center gap-4 font-semibold text-slate-700">
-          <li>
-            <Link
-              className="hover:text-pink-500 transition-colors"
-              href="/animaux"
-            >
-              Animaux
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="hover:text-pink-500 transition-colors"
-              href="/posts"
-            >
-              Posts
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="hover:text-pink-500 transition-colors"
-              href="/studio"
-            >
-              Sanity Studio
-            </Link>
-          </li>
-        </ul>
+          <ul className="flex items-center gap-4 font-semibold">
+            <li>
+              <Link
+                className="text-white hover:text-secondary-500 transition-colors"
+                href="/animaux"
+              >
+                Animaux
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="text-white hover:text-secondary-500 transition-colors"
+                href="/posts"
+              >
+                Posts
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="text-white hover:text-secondary-500 transition-colors"
+                href="/studio"
+              >
+                Studio
+              </Link>
+            </li>
+          </ul>
+
+          <Link
+            href="/"
+            className="group flex items-center gap-2 text-secondary-500 md:text-xl font-bold tracking-tight"
+          >
+            <IconHeartHandshake
+              size={40}
+              stroke={2}
+              className="transition-all duration-300 hover:scale-105 drop-shadow-lg duration-300 group-hover:rotate-10"
+            />
+          </Link>
+        </div>
       </header>
     </div>
   );
