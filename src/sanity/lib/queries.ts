@@ -61,6 +61,18 @@ export const ANIMALS_QUERY =
   slug
 }`)
 
+export const ANIMALS_TO_ADOPT_QUERY =
+  defineQuery(`*[_type == "animal" && toAdopt == true]|order(name asc){
+  _id,
+  name,
+  species,
+  sex,
+  age,
+  sterilized,
+  coverImage,
+  slug
+}`)
+
 export const ANIMALS_SLUGS_QUERY =
   defineQuery(`*[_type == "animal" && defined(slug.current)]{
   "slug": slug.current

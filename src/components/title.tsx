@@ -1,9 +1,15 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren } from "react";
 
-export function Title(props: PropsWithChildren) {
+type TitleProps = PropsWithChildren<{
+  color?: string;
+}>;
+
+export function Title({ children, color = "text-slate-800" }: TitleProps) {
   return (
-    <h1 className="text-xl md:text-3xl lg:text-5xl font-semibold text-slate-800 text-pretty max-w-3xl">
-      {props.children}
+    <h1
+      className={`text-xl md:text-3xl lg:text-5xl font-semibold text-pretty max-w-3xl ${color}`}
+    >
+      {children}
     </h1>
-  )
+  );
 }

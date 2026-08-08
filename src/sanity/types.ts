@@ -57,11 +57,11 @@ export type Animal = {
     _type: "file";
     _key: string;
   }>;
-  species?: "Lapin" | "Souris" | "Gerbille" | "Hamster" | "Chat" | "Autre";
+  species: "Lapin" | "Souris" | "Gerbille" | "Hamster" | "Chat" | "Autre";
   quantity?: number;
   breed?: string;
   sex?: "M\xE2le" | "Femelle";
-  age?: string;
+  age: string;
   animalMessage?: string;
   story?: string;
   personality?: string;
@@ -75,6 +75,8 @@ export type Animal = {
   associationTime?: string;
   adoptionFees?: number;
   slug: Slug;
+  toAdopt?: boolean;
+  displayOnHomePage?: boolean;
 };
 
 export type Slug = {
@@ -418,10 +420,29 @@ export type POST_QUERY_RESULT = {
 export type ANIMALS_QUERY_RESULT = Array<{
   _id: string;
   name: string;
-  species:
-    "Autre" | "Chat" | "Gerbille" | "Hamster" | "Lapin" | "Souris" | null;
+  species: "Autre" | "Chat" | "Gerbille" | "Hamster" | "Lapin" | "Souris";
   sex: "Femelle" | "M\xE2le" | null;
-  age: string | null;
+  age: string;
+  sterilized: boolean | null;
+  coverImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  slug: Slug;
+}>;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: ANIMALS_TO_ADOPT_QUERY
+// Query: *[_type == "animal" && toAdopt == true]|order(name asc){  _id,  name,  species,  sex,  age,  sterilized,  coverImage,  slug}
+export type ANIMALS_TO_ADOPT_QUERY_RESULT = Array<{
+  _id: string;
+  name: string;
+  species: "Autre" | "Chat" | "Gerbille" | "Hamster" | "Lapin" | "Souris";
+  sex: "Femelle" | "M\xE2le" | null;
+  age: string;
   sterilized: boolean | null;
   coverImage: {
     asset?: SanityImageAssetReference;
@@ -446,11 +467,10 @@ export type ANIMALS_SLUGS_QUERY_RESULT = Array<{
 export type ANIMAL_QUERY_RESULT = {
   _id: string;
   name: string;
-  species:
-    "Autre" | "Chat" | "Gerbille" | "Hamster" | "Lapin" | "Souris" | null;
+  species: "Autre" | "Chat" | "Gerbille" | "Hamster" | "Lapin" | "Souris";
   breed: string | null;
   sex: "Femelle" | "M\xE2le" | null;
-  age: string | null;
+  age: string;
   coverImage: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -495,6 +515,7 @@ declare module "@sanity/client" {
     '*[_type == "post" && defined(slug.current)]{ \n  "slug": slug.current\n}': POSTS_SLUGS_QUERY_RESULT;
     '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': POST_QUERY_RESULT;
     '*[_type == "animal"]|order(name asc){\n  _id,\n  name,\n  species,\n  sex,\n  age,\n  sterilized,\n  coverImage,\n  slug\n}': ANIMALS_QUERY_RESULT;
+    '*[_type == "animal" && toAdopt == true]|order(name asc){\n  _id,\n  name,\n  species,\n  sex,\n  age,\n  sterilized,\n  coverImage,\n  slug\n}': ANIMALS_TO_ADOPT_QUERY_RESULT;
     '*[_type == "animal" && defined(slug.current)]{\n  "slug": slug.current\n}': ANIMALS_SLUGS_QUERY_RESULT;
     '*[_type == "animal" && slug.current == $slug][0]{\n  _id,\n  name,\n  species,\n  breed,\n  sex,\n  age,\n  coverImage,\n  gallery,\n  videos,\n  animalMessage,\n  story,\n  personality,\n  health,\n  heavyCareNeeded,\n  sociability,\n  vaccinated,\n  sterilized,\n  currentFood,\n  currentHabitat,\n  associationTime,\n  adoptionFees,\n  quantity\n}': ANIMAL_QUERY_RESULT;
   }

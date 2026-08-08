@@ -52,7 +52,7 @@ export function Header() {
             <IconHeartHandshake
               size={40}
               stroke={2}
-              className="transition-all duration-300 hover:scale-105 drop-shadow-lg duration-300 group-hover:rotate-10"
+              className="transition-all duration-300 hover:scale-120 drop-shadow-lg duration-300 group-hover:rotate-10"
             />
           </Link>
         </div>

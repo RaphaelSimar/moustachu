@@ -285,7 +285,7 @@
             }
           ]
         },
-        "optional": true
+        "optional": false
       },
       "quantity": {
         "type": "objectAttribute",
@@ -323,7 +323,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "animalMessage": {
         "type": "objectAttribute",
@@ -416,6 +416,20 @@
           "name": "slug"
         },
         "optional": false
+      },
+      "toAdopt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
+      "displayOnHomePage": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
       }
     }
   },
