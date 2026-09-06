@@ -7,12 +7,12 @@ export function WelcomePanel() {
   return (
     <section className="flex p-28 pt-16 gap-12 bg-white">
       <div className="flex flex-col gap-6 w-2/5">
-        <Title>
+        <Title bold={false}>
           Chaque Moustachu mérite une{" "}
           <span className="text-primary-500">seconde chance.</span>
         </Title>
 
-        <p className="text-lg">
+        <p className="text-xl font-regular">
           Nous sauvons, soignons et accompagnons tous les Moustachus abandonnés
           pour leur offir une nouvelle vie et les confier à des familles
           aimantes.

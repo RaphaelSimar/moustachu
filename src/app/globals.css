@@ -34,6 +34,12 @@
   --color-neutral-900: #171717;
 }
 
+
+body {
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+}
+
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

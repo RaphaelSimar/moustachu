@@ -104,3 +104,12 @@ export const ANIMAL_QUERY =
   adoptionFees,
   quantity
 }`)
+
+export const ASSOCIATION_NUMBERS_QUERY =
+  defineQuery(`*[_type == "associationNumbers"][0]{
+  animalsRescued,
+  fosterFamilies,
+  volunteers,
+  animalsWaitingForFoster,
+  adoptions
+}`)

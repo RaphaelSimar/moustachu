@@ -15,6 +15,20 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: src/sanity/extract.json
+export type AssociationNumbers = {
+  _id: string;
+  _type: "associationNumbers";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  animalsRescued: number;
+  fosterFamilies: number;
+  volunteers: number;
+  animalsWaitingForFoster: number;
+  adoptions: number;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
@@ -315,6 +329,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | AssociationNumbers
   | SanityImageAssetReference
   | SanityFileAssetReference
   | Animal
@@ -507,6 +522,17 @@ export type ANIMAL_QUERY_RESULT = {
   quantity: number | null;
 } | null;
 
+// Source: src/sanity/lib/queries.ts
+// Variable: ASSOCIATION_NUMBERS_QUERY
+// Query: *[_type == "associationNumbers"][0]{  animalsRescued,  fosterFamilies,  volunteers,  animalsWaitingForFoster,  adoptions}
+export type ASSOCIATION_NUMBERS_QUERY_RESULT = {
+  animalsRescued: number;
+  fosterFamilies: number;
+  volunteers: number;
+  animalsWaitingForFoster: number;
+  adoptions: number;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -518,5 +544,6 @@ declare module "@sanity/client" {
     '*[_type == "animal" && toAdopt == true]|order(name asc){\n  _id,\n  name,\n  species,\n  sex,\n  age,\n  sterilized,\n  coverImage,\n  slug\n}': ANIMALS_TO_ADOPT_QUERY_RESULT;
     '*[_type == "animal" && defined(slug.current)]{\n  "slug": slug.current\n}': ANIMALS_SLUGS_QUERY_RESULT;
     '*[_type == "animal" && slug.current == $slug][0]{\n  _id,\n  name,\n  species,\n  breed,\n  sex,\n  age,\n  coverImage,\n  gallery,\n  videos,\n  animalMessage,\n  story,\n  personality,\n  health,\n  heavyCareNeeded,\n  sociability,\n  vaccinated,\n  sterilized,\n  currentFood,\n  currentHabitat,\n  associationTime,\n  adoptionFees,\n  quantity\n}': ANIMAL_QUERY_RESULT;
+    '*[_type == "associationNumbers"][0]{\n  animalsRescued,\n  fosterFamilies,\n  volunteers,\n  animalsWaitingForFoster,\n  adoptions\n}': ASSOCIATION_NUMBERS_QUERY_RESULT;
   }
 }
