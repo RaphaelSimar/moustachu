@@ -34,7 +34,7 @@ const { data: associationNumbers } = await sanityFetch({
       {/* L'association */}
       <div className="flex flex-col gap-6">
         <Title color="text-primary-500 flex items-center gap-4">
-          <IconHeartHandshake size={54} stroke={2} />
+          <IconHeartHandshake size={48} stroke={2} />
           L'association
         </Title>
 
@@ -65,7 +65,7 @@ const { data: associationNumbers } = await sanityFetch({
 
             <Image
               src={AnimauxAccueillis}
-              alt="Moustachu"
+              alt="Animaux accueillis"
               width={200}
               priority
               className="absolute -bottom-6 -right-5 w-2/5"
@@ -86,10 +86,10 @@ const { data: associationNumbers } = await sanityFetch({
 
             <Image
               src={FamilleDAccueil}
-              alt="Moustachu"
+              alt="Famille d'accueil"
               width={200}
               priority
-              className="absolute -bottom-8 -right-5 w-2/5"
+              className="absolute -bottom-10 -right-5 w-2/5"
             />
           </div>
 
@@ -107,9 +107,9 @@ const { data: associationNumbers } = await sanityFetch({
 
             <Image
               src={Benevoles}
-              alt="Moustachu"
+              alt="Bénévoles"
               priority
-              className="absolute -bottom-5 -right-5 w-1/2"
+              className="absolute -bottom-5 -right-7 w-1/2"
             />
           </div>
 
@@ -127,7 +127,7 @@ const { data: associationNumbers } = await sanityFetch({
 
             <Image
               src={EnAttenteDeFamilleDAccueil}
-              alt="Moustachu"
+              alt="En attente de famille d'accueil"
               width={200}
               priority
               className="absolute -bottom-6 -right-5 w-1/4"
@@ -148,10 +148,10 @@ const { data: associationNumbers } = await sanityFetch({
 
             <Image
               src={Adoptions}
-              alt="Moustachu"
+              alt="Adoptions"
               width={250}
               priority
-              className="absolute -bottom-6 -right-5 w-1/3"
+              className="absolute -bottom-8 -right-5 w-1/3"
             />
           </div>
         </div>
@@ -164,32 +164,32 @@ const { data: associationNumbers } = await sanityFetch({
           Nos valeurs
         </Title>
 
-        <div className="relative flex gap-10 items-center">
+        <div className="relative flex gap-10 items-center justify-center pb-10 lg:pb-0">
           <Image
             src={Elodie1}
-            alt="Moustachu"
+            alt="Persona Elodie"
             width={250}
             priority
-            className=""
+            className="hidden lg:flex"
           />
           <div className="relative">
             {/* Ligne de la timeline */}
-            <div className="absolute left-0 right-0 top-30 h-1 bg-primary-600" />
+            <div className="absolute hidden lg:flex left-0 right-0 top-30 h-1 bg-primary-600" />
 
-            <div className="relative grid grid-cols-4 gap-6">
+            <div className="relative grid grid-cols-1 gap-6 lg:grid-cols-4">
               {/* Valeur 1 */}
               <div className="flex flex-col items-center text-center">
                 <div className="flex h-20 items-center justify-center">
                   <Image
                     src={Value1}
-                    alt="Moustachu"
+                    alt="Valeur 1"
                     width={100}
                     priority
                     className="w-4/5"
                   />
                 </div>
 
-                <div className="z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
+                <div className="hidden lg:flex z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
 
                 <p className="mt-6 text-lg font-semibold leading-tight text-primary-600">
                   Un environnement adapté
@@ -201,14 +201,14 @@ const { data: associationNumbers } = await sanityFetch({
                 <div className="flex h-20 items-center justify-center">
                   <Image
                     src={Value2}
-                    alt="Moustachu"
+                    alt="Valeur 2"
                     width={100}
                     priority
                     className="w-4/5"
                   />
                 </div>
 
-                <div className="z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
+                <div className="hidden lg:flex z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
 
                 <p className="mt-6 text-lg font-semibold leading-tight text-primary-600">
                   Des soins chez un vétérinaire agréé
@@ -220,14 +220,14 @@ const { data: associationNumbers } = await sanityFetch({
                 <div className="flex h-20 items-center justify-center">
                   <Image
                     src={Value3}
-                    alt="Moustachu"
+                    alt="Valeur 3"
                     width={100}
                     priority
                     className="w-4/5"
                   />
                 </div>
 
-                <div className="z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
+                <div className="hidden lg:flex z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
 
                 <p className="mt-6 text-lg font-semibold leading-tight text-primary-600">
                   Un accompagnement humain et bienveillant
@@ -239,14 +239,14 @@ const { data: associationNumbers } = await sanityFetch({
                 <div className="flex h-20 items-center justify-center">
                   <Image
                     src={Value4}
-                    alt="Moustachu"
+                    alt="Valeur 4"
                     width={100}
                     priority
                     className="w-4/5"
                   />
                 </div>
 
-                <div className="z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
+                <div className="hidden lg:flex z-10 mt-8 h-5 w-5 rounded-full bg-primary-600" />
 
                 <p className="mt-6 text-lg font-semibold leading-tight text-primary-600">
                   Des conseils appuyés et basés sur des recherches mondiales

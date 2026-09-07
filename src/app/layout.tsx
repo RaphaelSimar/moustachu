@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 // import "./globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={raleway.variable}>
       <body>{children}</body>
+      <Footer />
     </html>
   );
 }

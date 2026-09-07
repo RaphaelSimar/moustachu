@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Title } from "../title";
 export function WelcomePanel() {
   return (
-    <section className="flex p-28 pt-16 gap-12 bg-white">
-      <div className="flex flex-col gap-6 w-2/5">
+    <section className="flex p-28 pt-16 gap-12 justify-center bg-white">
+      <div className="flex flex-col gap-6 w-100 lg:w-2/5">
         <Title bold={false}>
           Chaque Moustachu mérite une{" "}
-          <span className="text-primary-500">seconde chance.</span>
+          <span className="text-primary-500">seconde chance</span>.
         </Title>
 
         <p className="text-xl font-regular">
@@ -56,7 +56,7 @@ export function WelcomePanel() {
           </Link>
         </div>
       </div>
-      <div className="flex flex-col gap-6 w-1/2">
+      <div className="hidden lg:flex flex-col gap-6 w-1/2">
         <Image src={test} alt="Moustachu" width={1200} priority className="" />
       </div>
     </section>
