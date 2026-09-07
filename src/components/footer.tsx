@@ -26,9 +26,12 @@ export function Footer() {
           <div>
             <h2 className="text-2xl font-bold">Nous contacter</h2>
 
-            <p className="mt-3 text-md font-semibold">
+            <a
+              href="mailto:association.moustachu@gmail.com"
+              className="mt-3 block pr-5 text-md font-semibold transition-colors hover:text-secondary-500"
+            >
               association.moustachu@gmail.com
-            </p>
+            </a>
 
             <div className="mt-3 flex items-center gap-5">
               <Link
