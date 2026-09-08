@@ -1,6 +1,7 @@
 import { AssociationOverviewPanel } from "@/components/landingPage/association-overview-panel";
 import { MoustachusToAdoptPanel } from "@/components/landingPage/moustachus-to-adopt-panel";
 import { PartnersPanel } from "@/components/landingPage/partners-panel";
+import { ToHelpUsPanel } from "@/components/landingPage/to-help-us-panel";
 import { WelcomePanel } from "@/components/landingPage/welcome-panel";
 
 export default async function Page() {
@@ -10,6 +11,7 @@ export default async function Page() {
       <MoustachusToAdoptPanel />
       <AssociationOverviewPanel />
       <PartnersPanel />
+      <ToHelpUsPanel />
     </main>
   );
 }

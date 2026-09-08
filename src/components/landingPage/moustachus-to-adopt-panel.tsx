@@ -11,7 +11,7 @@ export async function MoustachusToAdoptPanel() {
   });
   
   return (
-    <section className="flex p-28 pt-12 gap-12 bg-primary-50 w-full">
+    <section className="flex p-5 md:p-28 pt-12 gap-12 bg-primary-50 w-full">
       <div className="flex flex-col gap-6 w-full">
         <div className="flex items-center gap-6">
           <IconHomeSearch className="text-primary-500" size={48} />

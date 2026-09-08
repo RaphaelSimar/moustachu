@@ -30,7 +30,7 @@ const { data: associationNumbers } = await sanityFetch({
 });
 
   return (
-    <section className="w-full bg-white px-28 py-20 pb-0">
+    <section className="w-full bg-white px-10 py-20 pb-0 md:px-28">
       {/* L'association */}
       <div className="flex flex-col gap-6">
         <Title color="text-primary-500 flex items-center gap-4">
@@ -50,9 +50,9 @@ const { data: associationNumbers } = await sanityFetch({
           <b>structure éthique, engagée et ouverte à tous</b>.
         </p>
 
-        <div className="grid grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
           {/* Animaux accueillis */}
-          <div className="relative col-span-2 h-60 overflow-visible rounded-3xl bg-cyan-100 p-6">
+          <div className="relative col-span-3 h-60 overflow-visible rounded-3xl bg-cyan-100 p-6 md:col-span-2">
             <div className="flex flex-col">
               <span className="text-8xl font-bold leading-none text-primary-700">
                 {associationNumbers?.animalsRescued ?? '?'}
@@ -73,7 +73,7 @@ const { data: associationNumbers } = await sanityFetch({
           </div>
 
           {/* Familles d'accueil */}
-          <div className="relative col-span-2 h-60 overflow-visible rounded-3xl bg-red-100 p-6">
+          <div className="relative col-span-3 h-60 overflow-visible rounded-3xl bg-red-100 p-6 md:col-span-2">
             <div className="flex flex-col">
               <span className="text-8xl font-bold leading-none text-primary-700">
                 {associationNumbers?.fosterFamilies ?? '?'}
@@ -94,7 +94,7 @@ const { data: associationNumbers } = await sanityFetch({
           </div>
 
           {/* Bénévoles */}
-          <div className="relative col-span-2 h-60 overflow-visible rounded-3xl bg-green-100 p-6">
+          <div className="relative col-span-3 h-60 overflow-visible rounded-3xl bg-green-100 p-6 md:col-span-2">
             <div className="flex flex-col">
               <span className="text-8xl font-bold leading-none text-primary-700">
                 {associationNumbers?.volunteers ?? '?'}

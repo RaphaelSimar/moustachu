@@ -12,7 +12,7 @@ export function Title({
 }: TitleProps) {
   return (
     <h1
-      className={`text-xl md:text-3xl lg:text-5xl ${
+      className={`text-3xl md:text-3xl lg:text-5xl ${
         bold ? "font-bold" : "font-semibold"
       } text-pretty max-w-3xl ${color}`}
     >
