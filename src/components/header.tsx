@@ -88,7 +88,7 @@ export function Header() {
           alt="Decoration"
           width={80}
           priority
-          className={`absolute z-1 opacity-30 transition-all duration-300 ${isScrolled ? "scale-50 left-20 md:bottom-5 md:left-20" : "left-18 md:bottom-8 md:left-28 "}`}
+          className={`absolute z-1 opacity-30 transition-all duration-300 ${isScrolled ? "scale-35 md:scale-50 left-11 md:left-20 bottom-2 md:bottom-5" : "left-18 md:bottom-8 md:left-28 "}`}
         />
         <Image
           src={Decoration2}
