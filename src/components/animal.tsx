@@ -146,7 +146,7 @@ export function Animal(props: AnimalProps) {
                 src={urlFor(image).width(500).height(500).url()}
                 width={500}
                 height={500}
-                alt=""
+                alt={`Photo ${index + 1} de ${name}`}
                 className="rounded-lg object-cover"
               />
             ))}

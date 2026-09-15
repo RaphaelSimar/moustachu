@@ -1,11 +1,11 @@
-import test from "@/assets/animals/test.png";
+import WelcomeAnimal from "@/assets/animals/Animal-accueil.png";
 import { Newspaper, PawPrint, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Title } from "../title";
 export function WelcomePanel() {
   return (
-    <section className="flex p-28 pt-16 gap-12 justify-center bg-white">
+    <section className="relative flex min-h-[600px] overflow-visible p-28 pt-16 gap-12 justify-start bg-white">
       <div className="flex flex-col gap-6 w-100 lg:w-2/5">
         <Title bold={false}>
           Chaque Moustachu mérite une{" "}
@@ -17,7 +17,7 @@ export function WelcomePanel() {
           pour leur offir une nouvelle vie et les confier à des familles
           aimantes.
         </p>
-        <div className="flex items-center w-full mt-2 justify-left flex-row gap-12">
+        <div className="flex items-center w-full mt-2 justify-center flex-row gap-12">
           <Link
             href="/posts"
             className="inline-flex text-xl text-center h-20 w-50 items-center justify-center rounded-full bg-secondary-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-secondary-600 hover:shadow-lg"
@@ -56,8 +56,13 @@ export function WelcomePanel() {
           </Link>
         </div>
       </div>
-      <div className="hidden lg:flex flex-col gap-6 w-1/2">
-        <Image src={test} alt="Moustachu" width={1200} priority className="" />
+      <div className="pointer-events-none absolute -right-58 min-[1300px]:right-0 top-0 z-0 hidden h-full lg:flex items-end">
+        <Image
+          src={WelcomeAnimal}
+          alt="Animal cocasse"
+          priority
+          className="h-full w-auto object-contain object-bottom"
+        />
       </div>
     </section>
   );
