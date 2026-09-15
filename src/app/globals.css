@@ -42,7 +42,22 @@ html,
 body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+    overflow-anchor: none;
+
+}
+
+@keyframes navigation-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+.animate-navigation-progress {
+  animation: navigation-progress 1s ease-in-out infinite;
 }
 
 /* :root {
