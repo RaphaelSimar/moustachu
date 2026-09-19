@@ -22,9 +22,8 @@ export type LegalNotice = {
   _updatedAt: string;
   _rev: string;
   name: string;
-  publishedAt?: string;
+  lastUpdatedAt?: string;
   body?: BlockContent;
-  href?: string;
 };
 
 export type SanityImageAssetReference = {
@@ -557,14 +556,18 @@ export type ASSOCIATION_NUMBERS_QUERY_RESULT =
 
 // Source: src/sanity/lib/queries.ts
 // Variable: LEGAL_NOTICE_QUERY
-// Query: *[_id == "legalNotice"][0] {    publishedAt,    body  }
+// Query: *[_id == "legalNotice"][0] {    lastUpdatedAt,    body  }
 export type LEGAL_NOTICE_QUERY_RESULT =
   | {
-      publishedAt: null;
+      lastUpdatedAt: null;
       body: null;
     }
   | {
-      publishedAt: string | null;
+      lastUpdatedAt: null;
+      body: BlockContent | null;
+    }
+  | {
+      lastUpdatedAt: string | null;
       body: BlockContent | null;
     }
   | null;
@@ -581,6 +584,6 @@ declare module "@sanity/client" {
     '*[_type == "animal" && defined(slug.current)]{\n  "slug": slug.current\n}': ANIMALS_SLUGS_QUERY_RESULT;
     '*[_type == "animal" && slug.current == $slug][0]{\n  _id,\n  name,\n  species,\n  breed,\n  sex,\n  age,\n  coverImage,\n  gallery,\n  videos,\n  animalMessage,\n  story,\n  personality,\n  health,\n  heavyCareNeeded,\n  sociability,\n  vaccinated,\n  sterilized,\n  currentFood,\n  currentHabitat,\n  associationTime,\n  adoptionFees,\n  quantity\n}': ANIMAL_QUERY_RESULT;
     '*[_id == "associationNumbers"][0]{\n  animalsRescued,\n  fosterFamilies,\n  volunteers,\n  animalsWaitingForFoster,\n  adoptions\n}': ASSOCIATION_NUMBERS_QUERY_RESULT;
-    '*[_id == "legalNotice"][0] {\n    publishedAt,\n    body\n  }\n': LEGAL_NOTICE_QUERY_RESULT;
+    '*[_id == "legalNotice"][0] {\n    lastUpdatedAt,\n    body\n  }': LEGAL_NOTICE_QUERY_RESULT;
   }
 }

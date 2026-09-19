@@ -16,10 +16,10 @@ export default async function Page() {
         Mentions légales
       </Title>
 
-      {legalNotice?.publishedAt ? (
+      {legalNotice?.lastUpdatedAt ? (
         <p className="mb-6 text-md font-medium text-primary-600">
           Dernière mise à jour :{" "}
-          {new Date(legalNotice.publishedAt).toLocaleDateString("fr-FR")}
+          {new Date(legalNotice.lastUpdatedAt).toLocaleDateString("fr-FR")}
         </p>
       ) : null}
 

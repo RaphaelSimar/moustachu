@@ -116,6 +116,6 @@ export const ASSOCIATION_NUMBERS_QUERY =
 
 export const LEGAL_NOTICE_QUERY =
   defineQuery(`*[_id == "legalNotice"][0] {
-    publishedAt,
+    lastUpdatedAt,
     body
   }`)

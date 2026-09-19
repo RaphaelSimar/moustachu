@@ -41,7 +41,7 @@
         },
         "optional": false
       },
-      "publishedAt": {
+      "lastUpdatedAt": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -53,13 +53,6 @@
         "value": {
           "type": "inline",
           "name": "blockContent"
-        },
-        "optional": true
-      },
-      "href": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
         },
         "optional": true
       }

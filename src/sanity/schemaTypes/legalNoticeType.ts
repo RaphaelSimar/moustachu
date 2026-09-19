@@ -16,8 +16,8 @@ export const legalNoticeType = defineType({
             validation: (Rule) => Rule.required(),
         },
         defineField({
-            name: 'publishedAt',
-            title: 'Date de publication',
+            name: 'lastUpdatedAt',
+            title: 'Date de dernière mise à jour',
             type: 'datetime',
         }),
         defineField({
