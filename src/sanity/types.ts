@@ -24,6 +24,7 @@ export type LegalNotice = {
   name: string;
   publishedAt?: string;
   body?: BlockContent;
+  href?: string;
 };
 
 export type SanityImageAssetReference = {
@@ -536,23 +537,37 @@ export type ANIMAL_QUERY_RESULT = {
 
 // Source: src/sanity/lib/queries.ts
 // Variable: ASSOCIATION_NUMBERS_QUERY
-// Query: *[_type == "associationNumbers"][0]{  animalsRescued,  fosterFamilies,  volunteers,  animalsWaitingForFoster,  adoptions}
-export type ASSOCIATION_NUMBERS_QUERY_RESULT = {
-  animalsRescued: number;
-  fosterFamilies: number;
-  volunteers: number;
-  animalsWaitingForFoster: number;
-  adoptions: number;
-} | null;
+// Query: *[_id == "associationNumbers"][0]{  animalsRescued,  fosterFamilies,  volunteers,  animalsWaitingForFoster,  adoptions}
+export type ASSOCIATION_NUMBERS_QUERY_RESULT =
+  | {
+      animalsRescued: null;
+      fosterFamilies: null;
+      volunteers: null;
+      animalsWaitingForFoster: null;
+      adoptions: null;
+    }
+  | {
+      animalsRescued: number;
+      fosterFamilies: number;
+      volunteers: number;
+      animalsWaitingForFoster: number;
+      adoptions: number;
+    }
+  | null;
 
 // Source: src/sanity/lib/queries.ts
 // Variable: LEGAL_NOTICE_QUERY
-// Query: *[_type == "legalNotice"][0]{  name,  publishedAt,  body}
-export type LEGAL_NOTICE_QUERY_RESULT = {
-  name: string;
-  publishedAt: string | null;
-  body: BlockContent | null;
-} | null;
+// Query: *[_id == "legalNotice"][0] {    publishedAt,    body  }
+export type LEGAL_NOTICE_QUERY_RESULT =
+  | {
+      publishedAt: null;
+      body: null;
+    }
+  | {
+      publishedAt: string | null;
+      body: BlockContent | null;
+    }
+  | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -565,7 +580,7 @@ declare module "@sanity/client" {
     '*[_type == "animal" && toAdopt == true]|order(name asc){\n  _id,\n  name,\n  species,\n  sex,\n  age,\n  sterilized,\n  coverImage,\n  slug\n}': ANIMALS_TO_ADOPT_QUERY_RESULT;
     '*[_type == "animal" && defined(slug.current)]{\n  "slug": slug.current\n}': ANIMALS_SLUGS_QUERY_RESULT;
     '*[_type == "animal" && slug.current == $slug][0]{\n  _id,\n  name,\n  species,\n  breed,\n  sex,\n  age,\n  coverImage,\n  gallery,\n  videos,\n  animalMessage,\n  story,\n  personality,\n  health,\n  heavyCareNeeded,\n  sociability,\n  vaccinated,\n  sterilized,\n  currentFood,\n  currentHabitat,\n  associationTime,\n  adoptionFees,\n  quantity\n}': ANIMAL_QUERY_RESULT;
-    '*[_type == "associationNumbers"][0]{\n  animalsRescued,\n  fosterFamilies,\n  volunteers,\n  animalsWaitingForFoster,\n  adoptions\n}': ASSOCIATION_NUMBERS_QUERY_RESULT;
-    '*[_type == "legalNotice"][0]{\n  name,\n  publishedAt,\n  body\n}': LEGAL_NOTICE_QUERY_RESULT;
+    '*[_id == "associationNumbers"][0]{\n  animalsRescued,\n  fosterFamilies,\n  volunteers,\n  animalsWaitingForFoster,\n  adoptions\n}': ASSOCIATION_NUMBERS_QUERY_RESULT;
+    '*[_id == "legalNotice"][0] {\n    publishedAt,\n    body\n  }\n': LEGAL_NOTICE_QUERY_RESULT;
   }
 }

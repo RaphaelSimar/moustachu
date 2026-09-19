@@ -106,7 +106,7 @@ export const ANIMAL_QUERY =
 }`)
 
 export const ASSOCIATION_NUMBERS_QUERY =
-  defineQuery(`*[_type == "associationNumbers"][0]{
+  defineQuery(`*[_id == "associationNumbers"][0]{
   animalsRescued,
   fosterFamilies,
   volunteers,
@@ -115,8 +115,7 @@ export const ASSOCIATION_NUMBERS_QUERY =
 }`)
 
 export const LEGAL_NOTICE_QUERY =
-  defineQuery(`*[_type == "legalNotice"][0]{
-  name,
-  publishedAt,
-  body
-}`)
+  defineQuery(`*[_id == "legalNotice"][0] {
+    publishedAt,
+    body
+  }`)

@@ -1,11 +1,12 @@
-import { HandHeart } from "lucide-react";
+import { BadgePercent } from "lucide-react";
 import { defineType } from "sanity";
+
 
 export const associationNumbersType = defineType({
     name: "associationNumbers",
     title: "Chiffres de l'association",
     type: "document",
-    icon: HandHeart,
+    icon: BadgePercent,
 
     fields: [
         {

@@ -1,11 +1,11 @@
-import { DocumentTextIcon } from '@sanity/icons';
+import { Scale } from "lucide-react";
 import { defineField, defineType } from 'sanity';
 
 export const legalNoticeType = defineType({
     name: 'legalNotice',
     title: 'Mentions légales',
     type: 'document',
-    icon: DocumentTextIcon,
+    icon: Scale,
     fields: [
         {
             name: "name",

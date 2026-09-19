@@ -16,14 +16,6 @@ import { HandHeart } from "lucide-react";
 import Image from "next/image";
 import { Title } from "../title";
 
-export type AssociationNumbers = {
-  animalsRescued: number;
-  fosterFamilies: number;
-  volunteers: number;
-  animalsWaitingForFoster: number;
-  adoptions: number;
-};
-
 export async function AssociationOverviewPanel() {
 const { data: associationNumbers } = await sanityFetch({
   query: ASSOCIATION_NUMBERS_QUERY,
