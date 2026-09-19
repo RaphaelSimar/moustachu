@@ -15,6 +15,54 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: src/sanity/extract.json
+export type LegalNotice = {
+  _id: string;
+  _type: "legalNotice";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  publishedAt?: string;
+  body?: BlockContent;
+};
+
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+      listItem?: "bullet";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+>;
+
 export type AssociationNumbers = {
   _id: string;
   _type: "associationNumbers";
@@ -27,13 +75,6 @@ export type AssociationNumbers = {
   volunteers: number;
   animalsWaitingForFoster: number;
   adoptions: number;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type SanityFileAssetReference = {
@@ -154,36 +195,6 @@ export type Post = {
   publishedAt?: string;
   body?: BlockContent;
 };
-
-export type BlockContent = Array<
-  | {
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-      listItem?: "bullet";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }
-  | {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-      _key: string;
-    }
->;
 
 export type Author = {
   _id: string;
@@ -329,8 +340,10 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-  | AssociationNumbers
+  | LegalNotice
   | SanityImageAssetReference
+  | BlockContent
+  | AssociationNumbers
   | SanityFileAssetReference
   | Animal
   | Slug
@@ -339,7 +352,6 @@ export type AllSanitySchemaTypes =
   | AuthorReference
   | CategoryReference
   | Post
-  | BlockContent
   | Author
   | Category
   | SanityImagePaletteSwatch
@@ -533,6 +545,15 @@ export type ASSOCIATION_NUMBERS_QUERY_RESULT = {
   adoptions: number;
 } | null;
 
+// Source: src/sanity/lib/queries.ts
+// Variable: LEGAL_NOTICE_QUERY
+// Query: *[_type == "legalNotice"][0]{  name,  publishedAt,  body}
+export type LEGAL_NOTICE_QUERY_RESULT = {
+  name: string;
+  publishedAt: string | null;
+  body: BlockContent | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -545,5 +566,6 @@ declare module "@sanity/client" {
     '*[_type == "animal" && defined(slug.current)]{\n  "slug": slug.current\n}': ANIMALS_SLUGS_QUERY_RESULT;
     '*[_type == "animal" && slug.current == $slug][0]{\n  _id,\n  name,\n  species,\n  breed,\n  sex,\n  age,\n  coverImage,\n  gallery,\n  videos,\n  animalMessage,\n  story,\n  personality,\n  health,\n  heavyCareNeeded,\n  sociability,\n  vaccinated,\n  sterilized,\n  currentFood,\n  currentHabitat,\n  associationTime,\n  adoptionFees,\n  quantity\n}': ANIMAL_QUERY_RESULT;
     '*[_type == "associationNumbers"][0]{\n  animalsRescued,\n  fosterFamilies,\n  volunteers,\n  animalsWaitingForFoster,\n  adoptions\n}': ASSOCIATION_NUMBERS_QUERY_RESULT;
+    '*[_type == "legalNotice"][0]{\n  name,\n  publishedAt,\n  body\n}': LEGAL_NOTICE_QUERY_RESULT;
   }
 }

@@ -113,3 +113,10 @@ export const ASSOCIATION_NUMBERS_QUERY =
   animalsWaitingForFoster,
   adoptions
 }`)
+
+export const LEGAL_NOTICE_QUERY =
+  defineQuery(`*[_type == "legalNotice"][0]{
+  name,
+  publishedAt,
+  body
+}`)

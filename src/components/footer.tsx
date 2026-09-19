@@ -108,7 +108,7 @@ export function Footer() {
               </Link>
 
               <Link
-                href="#"
+                href="/mentions-legales"
                 className="transition-colors hover:text-secondary-500"
               >
                 Mentions légales
